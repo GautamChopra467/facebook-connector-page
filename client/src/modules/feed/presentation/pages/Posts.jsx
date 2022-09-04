@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "../styles/PostsStyles.css";
 import Post from '../components/Post';
 import { GoGlobe } from "react-icons/go";
@@ -12,11 +12,26 @@ import { FaRegCommentAlt } from "react-icons/fa";
 import { FiCamera } from "react-icons/fi";
 import { MdGif } from "react-icons/md";
 import { GiMicrophone } from "react-icons/gi"
-import ParentComment from '../../../../shared/widgets/ParentComment';
+import ParentComment from '../../../../shared/widgets/jsx/ParentComment';
+import { useEffect } from 'react';
+import axios from 'axios';
 
 const Posts = () => {
+  const [allComments,setAllComments] = useState([])
+
+  useEffect(() => {
+    const getComments = ()=>{
+        axios.get(`${process.env.REACT_APP_BACKEND_PORT}feed`).then(({data})=>{
+          setAllComments(data.data)
+        })
+      }
+
+    getComments();
+    },[])
+
   return (
     <div>
+      {console.log(allComments)}
       <div className='main_container_posts'>
         <div className='main_box_posts'>
           <div className='posts_container_posts'>
@@ -120,7 +135,11 @@ const Posts = () => {
 
 
                         {/* COMMENT */}
-                        <ParentComment />
+                        {(allComments === undefined) ? "" 
+                        : (allComments.map((comment)=>(
+                          <ParentComment comment={comment} />
+                        )))}
+                        
                       </div>
                     </div>
                   </div>
