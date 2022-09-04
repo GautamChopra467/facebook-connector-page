@@ -23,7 +23,7 @@ module.exports = {
             for(let i=0;i<allPagesInfo.data.data.length;i++){
                 try{
 
-                    const allPostInfo = await axios.get(`${process.env.ALL_POST_INFO}/${allPagesInfo.data.data[1].id}?fields=name,unread_notif_count,unread_message_count,category,picture&access_token=${process.env.PAGE_ACCESS_TOKEN}`)
+                    const allPostInfo = await axios.get(`${process.env.ALL_POST_INFO}/${allPagesInfo.data.data[i].id}?fields=name,unread_notif_count,unread_message_count,category,picture&access_token=${process.env.PAGE_ACCESS_TOKEN}`)
 
                     allpagesInfo = [...allpagesInfo,allPostInfo.data];
 

@@ -31,7 +31,7 @@ const App = () => {
         <Route exact path='/page' element={<SinglePage />} />
       </Routes>
     </BrowserRouter>
-    <button onClick={getComments}> Get Comments </button>
+    {/* <button onClick={getComments}> Get Comments </button> */}
 
     {/* <button onClick={printComment}> Single Comments </button> */} 
     {/* {

@@ -11,7 +11,6 @@ import { BiLike } from "react-icons/bi";
 import { FaRegCommentAlt } from "react-icons/fa";
 import { FiCamera } from "react-icons/fi";
 import { MdGif } from "react-icons/md";
-import { GiMicrophone } from "react-icons/gi"
 import ParentComment from '../../../../shared/widgets/jsx/ParentComment';
 import axios from 'axios';
 
@@ -25,7 +24,7 @@ const Posts = () => {
         setAllComments(data.data)
       })
     }
-    // getComments();
+    getComments();
   },[])
   
 
@@ -67,7 +66,7 @@ const Posts = () => {
                       <a href='https://www.amazon.in/b?ie=UTF8&node=976460031'>https://www.amazon.in/b?ie=UTF8&node=976460031</a>
                     </div>
                     <div className='post_middle_bottom_section_posts'>
-                    {(comment.full_picture === undefined)?"":<img src={comment.full_picture} alt="post-image" />}
+                    {(comment.full_picture === undefined)?"":<img src={comment.full_picture} alt="post" />}
                     </div>
                   </div>
                 </div>

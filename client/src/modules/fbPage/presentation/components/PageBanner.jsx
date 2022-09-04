@@ -1,6 +1,6 @@
 import React from 'react';
 import "../styles/PageBannerStyles.css";
-import { BsSearch, BsMessenger } from "react-icons/bs";
+import { BsSearch, BsMessenger, BsThreeDots } from "react-icons/bs";
 import { IoMdThumbsUp } from "react-icons/io";
 
 const PageBanner = () => {
@@ -52,7 +52,30 @@ const PageBanner = () => {
             <div className='line_pagebanner'></div>
 
             <div className='tabs_container_pagebanner'>
-                
+                <div className='tabs_left_section_pagebanner'>
+                    <div className='tab_box_pagebanner active_tab_pagebanner'>
+                        <p>Posts</p>
+                    </div>
+                    <div className='tab_box_pagebanner'>
+                        <p>About</p>
+                    </div>
+                    <div className='tab_box_pagebanner'>
+                        <p>Mentions</p>
+                    </div>
+                    <div className='tab_box_pagebanner'>
+                        <p>Reviews</p>
+                    </div>
+                    <div className='tab_box_pagebanner'>
+                        <p>Followers</p>
+                    </div>
+                    <div className='tab_box_pagebanner'>
+                        <p>Photos</p>
+                    </div>
+                </div>
+
+                <div className='three_dots_container_pagebanner'>
+                    <BsThreeDots className='three_dots_icon_pagebanner' />
+                </div>
             </div>
           </div>  
         </div>
