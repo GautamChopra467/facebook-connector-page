@@ -11,11 +11,13 @@ const App = () => {
   const [allcomments,setAllComments] = useState([])
 
 
-  // const getComments = ()=>{
-  //   axios.get(`${process.env.REACT_APP_BACKEND_PORT}feed`).then(({data})=>{
-  //     setAllComments(data.data)
-  //   })
-  // }
+  const getComments = ()=>{
+    axios.get(`${process.env.REACT_APP_BACKEND_PORT}pageinfo`).then(({data})=>{
+      setAllComments(data)
+    })
+  }
+
+  console.log(allcomments)
 
   return (
     <>
@@ -25,21 +27,22 @@ const App = () => {
         <Route exact path='/demo' element={<Demo />} />
       </Routes>
     </BrowserRouter>
-    {/* <button onClick={getComments}> Get Comments </button>
-    <button onClick={printComment}> Single Comments </button> */}
-    {
+    <button onClick={getComments}> Get Comments </button>
+
+    {/* <button onClick={printComment}> Single Comments </button> */} 
+    {/* {
          (allcomments === undefined)?"":(
         allcomments.map((comment)=>(
           // console.log(comment.id)
           <>
           <div key={comment.id}>
-          <p>{comment.id}</p>
+          <img src={comment.full_picture}/>
           <p>{comment.message}</p>
           </div>
          
           </>
         )))
-    }
+    } */}
 
     </>
   )
