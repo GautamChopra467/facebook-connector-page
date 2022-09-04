@@ -1,9 +1,11 @@
+
 module.exports = {
     ROUTES :{
         POST:{
             FEED :'/feed',
             INFO:"/allpostinfo",
-            PAGE:"/pageinfo"
+            PAGE:"/pageinfo",
+            SINGLEPAGE:"/singlepageinfo/:id"
         }
     }
 }

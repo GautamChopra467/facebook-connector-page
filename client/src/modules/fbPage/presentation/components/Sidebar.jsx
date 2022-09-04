@@ -20,7 +20,7 @@ import PagesContainer from "./PagesContainer";
 import Header from "../../../../shared/widgets/jsx/Header"
 
 
-const Sidebar = ({ children,theme,userinfo, setTheme,profilehealth}) => {
+const Sidebar = ({allPagesInfo}) => {
 
   const [isOpenSidebar, setIsOpenSidebar] = useState(window.innerWidth > 940 ? true : false);
     
@@ -156,12 +156,18 @@ const Sidebar = ({ children,theme,userinfo, setTheme,profilehealth}) => {
           </div>
 
           <div className="page_middle_section_sidebar">
-            <div className="page_middle_box_sidebar">
-              <div className="page_icon_container_sidebar">
-                <img src={ProfileImg} alt="logo" />
-              </div>
-              <p>Demo Page</p>
-            </div>
+            {
+               (allPagesInfo === undefined)?"":(
+                allPagesInfo.map((page)=>(
+                  <div className="page_middle_box_sidebar" key={page.id}>
+                  <div className="page_icon_container_sidebar">
+                    <img src={page.picture.data.url} alt="logo" />
+                  </div>
+                  <p>{page.name}</p>
+                 </div>
+                )))
+            }
+            
           </div>
 
           <div className="page_bottom_section_sidebar">
@@ -220,7 +226,7 @@ const Sidebar = ({ children,theme,userinfo, setTheme,profilehealth}) => {
           userinfo={userinfo}
         /> */}
         <Header />
-        <PagesContainer />
+        <PagesContainer allPagesInfo={allPagesInfo}/>
       </motion.main>
     </div>
   );

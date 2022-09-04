@@ -2,6 +2,8 @@ const axios = require("axios")
 
 module.exports = {
 
+   
+
     // async comments(req, res) {
     //     try {
     //         const allComments = await axios.get(`${process.env.ALL_COMMENTS}?access_token=${process.env.PAGE_ACCESS_TOKEN}`)
@@ -22,7 +24,6 @@ module.exports = {
 
             for(let i=0;i<allPagesInfo.data.data.length;i++){
                 try{
-
                     const allPostInfo = await axios.get(`${process.env.ALL_POST_INFO}/${allPagesInfo.data.data[i].id}?fields=name,unread_notif_count,unread_message_count,category,picture&access_token=${process.env.PAGE_ACCESS_TOKEN}`)
 
                     allpagesInfo = [...allpagesInfo,allPostInfo.data];
@@ -52,7 +53,20 @@ module.exports = {
         }
 
     },
+    async singlePagesInfo(req,res){
+        try{
 
+            const {id} = req.params;
+
+            const singlepageinfo = await axios.get(`${process.env.ALL_POST_INFO}/${id}/feed?fields=full_picture,message,comments{created_time,from}
+            &access_token=${process.env.PAGE_ACCESS_TOKEN}`)
+
+           res.send(singlepageinfo.data)
+
+        }catch(err){
+           console.log(err)
+        }
+    }
 
 }
 

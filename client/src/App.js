@@ -10,16 +10,16 @@ import SinglePage from './modules/fbPage/presentation/pages/SinglePage';
 
 const App = () => {
 
-  const [allcomments,setAllComments] = useState([])
+  // const [allcomments,setAllComments] = useState([])
 
 
-  const getComments = ()=>{
-    axios.get(`${process.env.REACT_APP_BACKEND_PORT}pageinfo`).then(({data})=>{
-      setAllComments(data)
-    })
-  }
+  // const getComments = ()=>{
+  //   axios.get(`${process.env.REACT_APP_BACKEND_PORT}pageinfo`).then(({data})=>{
+  //     setAllComments(data)
+  //   })
+  // }
 
-  console.log(allcomments)
+  // console.log(allcomments)
 
   return (
     <>
@@ -28,7 +28,7 @@ const App = () => {
         <Route exact path='/' element={<Posts />} />
         <Route exact path='/demo' element={<Demo />} />
         <Route exact path='/pages' element={<AccountPages />} />
-        <Route exact path='/page' element={<SinglePage />} />
+        <Route exact path='/page/:id' element={<SinglePage />} />
       </Routes>
     </BrowserRouter>
     {/* <button onClick={getComments}> Get Comments </button> */}
