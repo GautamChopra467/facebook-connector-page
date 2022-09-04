@@ -4,10 +4,6 @@ import Post from '../components/Post';
 import { GoGlobe } from "react-icons/go";
 import { BsEmojiSmile, BsFillCaretDownFill, BsThreeDots } from "react-icons/bs";
 import ProfileImage from "../../../../assets/img/profile-image.png";
-<<<<<<< HEAD
-import PostImage from "../../../../assets/img/post-image.jpg"
-import axios from "axios"
-=======
 import PostImage from "../../../../assets/img/post-image.jpg";
 import LikeImage from "../../../../assets/img/like-image.svg"
 import { RiShareForwardLine } from "react-icons/ri";
@@ -17,8 +13,8 @@ import { FiCamera } from "react-icons/fi";
 import { MdGif } from "react-icons/md";
 import { GiMicrophone } from "react-icons/gi"
 import ParentComment from '../../../../shared/widgets/ParentComment';
+import axios from "axios"
 
->>>>>>> 24b2f702027a03b18611c341e26e367996aeb6c3
 const Posts = () => {
 
   const [allcomments,setAllComments] = useState([])
