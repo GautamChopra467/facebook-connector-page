@@ -1,15 +1,13 @@
 import React, { useEffect,useState } from 'react';
 import "../styles/PageBannerStyles.css";
 import Header from '../../../../shared/widgets/jsx/Header'
-<<<<<<< HEAD
+
 import PageBanner from '../components/PageBanner';
 import Posts from "../../../feed/presentation/pages/Posts";
 import PhotoImage from "../../../../assets/img/facebook-logo.png";
-=======
-import PageBanner from '../components/PageBanner'
 import {useParams} from "react-router-dom"
 import axios from "axios";
->>>>>>> eb5dd7bf89186ae089659e95ef9a27607c8c1c30
+
 
 const SinglePage = () => {
   
