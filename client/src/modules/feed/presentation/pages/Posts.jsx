@@ -16,7 +16,7 @@ import axios from 'axios';
 
 const Posts = () => {
 
-  const [allComments,setAllComments] = useState([])
+  const [allComments,setAllComments] = useState([true])
 
   useEffect(()=>{
     const getComments = ()=>{

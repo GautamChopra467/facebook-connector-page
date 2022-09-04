@@ -1,7 +1,6 @@
 import React, { useEffect,useState } from 'react';
 import "../styles/PageBannerStyles.css";
 import Header from '../../../../shared/widgets/jsx/Header'
-
 import PageBanner from '../components/PageBanner';
 import Posts from "../../../feed/presentation/pages/Posts";
 import PhotoImage from "../../../../assets/img/facebook-logo.png";
@@ -32,7 +31,7 @@ const SinglePage = () => {
       <div className='main_container_singlepage'>
         <PageBanner />
         <div className='main_container_bottom_section_singlepage'>
-          {/* <Posts /> */}
+          <Posts />
           <div className='main_photos_container_singlepage'>
             <div className='main_photos_top_section_singlepage'>
               <h3>Photos</h3>
