@@ -7,6 +7,7 @@ import PhotoImage from "../../../../assets/img/facebook-logo.png";
 import {useParams} from "react-router-dom"
 import axios from "axios";
 
+
 const SinglePage = () => {
   
   const [SinglePageInfo,setSinglePageInfo] = useState([])
