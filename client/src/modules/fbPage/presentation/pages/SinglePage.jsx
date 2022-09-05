@@ -14,13 +14,17 @@ const SinglePage = () => {
 
   const {id} = useParams()
 
+  const callSinglePageInfo = ()=>{
+    console.log("Called...")
+    axios.get(`${process.env.REACT_APP_BACKEND_PORT}singlepageinfo/${id}`).then(({data})=>{
+      setSinglePageInfo(data)
+    console.log("Called Set ...")
+
+    })
+  }
+
   useEffect(()=>{
-    const singlePageInfo = ()=>{
-      axios.get(`${process.env.REACT_APP_BACKEND_PORT}singlepageinfo/${id}`).then(({data})=>{
-        setSinglePageInfo(data)
-      })
-    }
-    singlePageInfo()
+    callSinglePageInfo()
   },[])
 
   console.log(SinglePageInfo)
@@ -50,7 +54,7 @@ const SinglePage = () => {
           </div>
 
           {(SinglePageInfo === undefined) ? "" : (
-            <Posts SinglePageInfo={SinglePageInfo} />
+            <Posts SinglePageInfo={SinglePageInfo}  callSinglePageInfo={callSinglePageInfo}/>
           )}
         </div>
       </div>

@@ -15,15 +15,24 @@ import { IoSend } from "react-icons/io5";
 import ParentComment from '../../../../shared/widgets/jsx/ParentComment';
 import axios from 'axios';
 
-const Posts = ({SinglePageInfo}) => {
+const Posts = ({SinglePageInfo,callSinglePageInfo}) => {
   const [commentMsg, setCommentMsg] = useState("");
 
   const changeCommentMsg = (e) => {
+    console.log(e.target.value)
     setCommentMsg(e.target.value);
   }
 
-  const submitCommentMsg = () => {
-    axios.post()
+  const submitCommentMsg = (id) => {
+    axios.post(`${process.env.REACT_APP_BACKEND_PORT}comment/${id}`,{commentMsg}).then(({data})=>{
+      if(data){
+        setCommentMsg("");
+        console.log("Calling ...")
+        callSinglePageInfo();
+        console.log("Calling After...")
+
+      }
+    })
   }
 
   return (
@@ -33,7 +42,7 @@ const Posts = ({SinglePageInfo}) => {
             <div className='posts_container_posts'>
               <div className='posts_box_posts'>
               {SinglePageInfo.map((post) => (
-                <div className='post_main_container_posts'>
+                <div className='post_main_container_posts' key={post.id}>
                   <div className='post_upper_section_posts'>
                     <div className='post_upper_left_section_posts'>
                       <div className='post_upper_left_logo_section_posts'>
@@ -128,7 +137,7 @@ const Posts = ({SinglePageInfo}) => {
                                 </div>
                               </div>
 
-                              <IoSend onClick={submitCommentMsg} className="send_icon_posts" />
+                              <IoSend onClick={()=>submitCommentMsg(post.id)} className="send_icon_posts" />
                             </div>
                             <p className='press_para_posts'>Press Enter to post.</p>
                           </div>

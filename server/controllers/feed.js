@@ -72,18 +72,30 @@ module.exports = {
 
             const {id} = req.params;
 
+          
             const {commentMsg} = req.body; 
 
-            const singlepageinfo = await axios.get(`${process.env.ALL_POST_INFO}/${id}/comments/?access_token=${process.env.PAGE_ACCESS_TOKEN}&message=${commentMsg}`)
+            const singlepageinfo = await axios.post(`${process.env.ALL_POST_INFO}/${id}/comments/?access_token=${process.env.PAGE_ACCESS_TOKEN}&message=${commentMsg}`)
 
             res.send(true)
 
         }catch(err){
            console.log(err)
         }
+    },
+    async deleteComment(){
+         
+        const {id} = req.params;
+
+        console.log(id)
+
+        try{
+
+            axios.delete(`${processs.env.ALL_POST_INFO}/${id}`)
+        }catch(err){
+            console.log(err)
+        }
     }
-    // 108046888706313/posts?fields=full_picture,comments{from,created_time,message,like_count,comment_count}
 }
 
 
-// me/accounts?fields=name,picture,id
