@@ -66,6 +66,21 @@ module.exports = {
         }catch(err){
            console.log(err)
         }
+    },
+    async postComment(req,res){
+        try{
+
+            const {id} = req.params;
+
+            const {commentMsg} = req.body; 
+
+            const singlepageinfo = await axios.get(`${process.env.ALL_POST_INFO}/${id}/comments/?access_token=${process.env.PAGE_ACCESS_TOKEN}&message=${commentMsg}`)
+
+            res.send(true)
+
+        }catch(err){
+           console.log(err)
+        }
     }
 
 }
