@@ -20,7 +20,7 @@ const SinglePage = () => {
         setSinglePageInfo(data)
       })
     }
-    // singlePageInfo()
+    singlePageInfo()
   },[])
 
   console.log(SinglePageInfo)
@@ -29,32 +29,29 @@ const SinglePage = () => {
     <div>
       <Header />
       <div className='main_container_singlepage'>
-        <PageBanner />
+        <PageBanner  />
         <div className='main_container_bottom_section_singlepage'>
-          <Posts />
           <div className='main_photos_container_singlepage'>
             <div className='main_photos_top_section_singlepage'>
               <h3>Photos</h3>
               <p>See all photos</p>
             </div>
             <div className='main_photos_bottom_section_singlepage'>
-              <div className='photo_section_singlepage'>
-                <img src={PhotoImage} alt="pics" />
-              </div>
-
-              <div className='photo_section_singlepage'>
-                <img src={PhotoImage} alt="pics" />
-              </div>
-
-              <div className='photo_section_singlepage'>
-                <img src={PhotoImage} alt="pics" />
-              </div>
-
-              <div className='photo_section_singlepage'>
-                <img src={PhotoImage} alt="pics" />
-              </div>
+              {(SinglePageInfo === undefined) ? "" : (
+                SinglePageInfo.map((photo) => (
+                  photo.full_picture && (
+                    <div key={photo.id} className='photo_section_singlepage'>
+                    <img src={photo.full_picture} alt="pics" />
+                  </div>
+                  )
+                ))
+              )}
             </div>
           </div>
+
+          {(SinglePageInfo === undefined) ? "" : (
+            <Posts SinglePageInfo={SinglePageInfo} />
+          )}
         </div>
       </div>
     </div>

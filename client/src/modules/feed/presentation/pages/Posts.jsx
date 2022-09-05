@@ -11,32 +11,28 @@ import { BiLike } from "react-icons/bi";
 import { FaRegCommentAlt } from "react-icons/fa";
 import { FiCamera } from "react-icons/fi";
 import { MdGif } from "react-icons/md";
+import { IoSend } from "react-icons/io5";
 import ParentComment from '../../../../shared/widgets/jsx/ParentComment';
 import axios from 'axios';
 
-const Posts = () => {
+const Posts = ({SinglePageInfo}) => {
+  const [commentMsg, setCommentMsg] = useState("");
 
-  const [allComments,setAllComments] = useState([true])
+  const changeCommentMsg = (e) => {
+    setCommentMsg(e.target.value);
+  }
 
-  useEffect(()=>{
-    const getComments = ()=>{
-      axios.get(`${process.env.REACT_APP_BACKEND_PORT}allpostinfo`).then(({data})=>{
-        setAllComments(data.data)
-      })
-    }
-    getComments();
-  },[])
-  
+  const submitCommentMsg = () => {
+    axios.post()
+  }
 
   return (
     <div>
-      {
-          (allComments === undefined)?"":(
-          allComments.map((comment)=>(
-          <div className='main_container_posts' key={comment.id}>
+      <div className='main_container_posts'>
           <div className='main_box_posts'>
             <div className='posts_container_posts'>
               <div className='posts_box_posts'>
+              {SinglePageInfo.map((post) => (
                 <div className='post_main_container_posts'>
                   <div className='post_upper_section_posts'>
                     <div className='post_upper_left_section_posts'>
@@ -48,7 +44,7 @@ const Posts = () => {
                           <h4>Amazon India</h4>
                         </div>
                         <div className='post_upper_left_bottom_section_posts'>
-                          <p>September 2</p>
+                          <p>{post.created_time}</p>
                           <GoGlobe className="globe_icon_posts" />
                         </div>
                       </div>
@@ -62,16 +58,17 @@ const Posts = () => {
   
                   <div className='post_middle_section_posts'>
                     <div className='post_middle_top_section_posts'>
-                      <p>{comment.message}</p>
-                      <a href='https://www.amazon.in/b?ie=UTF8&node=976460031'>https://www.amazon.in/b?ie=UTF8&node=976460031</a>
+                      {post.message && (
+                        <p>{post.message}</p>
+                      )}
+                      {/* <a href='https://www.amazon.in/b?ie=UTF8&node=976460031'>https://www.amazon.in/b?ie=UTF8&node=976460031</a> */}
                     </div>
                     <div className='post_middle_bottom_section_posts'>
-                    {(comment.full_picture === undefined)?"":<img src={comment.full_picture} alt="post" />}
+                    {(post.full_picture === undefined)?"":<img src={post.full_picture} alt="post" />}
                     </div>
                   </div>
-                </div>
 
-                <div className='post_lower_section_posts'>
+                  <div className='post_lower_section_posts'>
                   <div className='post_lower_top_section_posts'>
                     <div className='post_lower_top_first_section_posts'>
                       <div className='post_lower_top_first_left_section_posts'>
@@ -117,7 +114,7 @@ const Posts = () => {
                           <div className='write_comment_right_section_posts'>
                             <div className='type_comment_container_posts'>
                               <div className='type_comment_box_posts'>
-                                <input type="text" placeholder='Write a comment...' />
+                                <input type="text" placeholder='Write a comment...' value={commentMsg} onChange={changeCommentMsg} />
                                 <div className='type_icon_container_posts'>
                                   <div className='type_icon_box_posts'>
                                     <BsEmojiSmile className="type_icon_posts" />
@@ -130,6 +127,8 @@ const Posts = () => {
                                   </div>
                                 </div>
                               </div>
+
+                              <IoSend onClick={submitCommentMsg} className="send_icon_posts" />
                             </div>
                             <p className='press_para_posts'>Press Enter to post.</p>
                           </div>
@@ -137,8 +136,9 @@ const Posts = () => {
 
 
                         {/* COMMENT */}
-                        {(allComments === undefined) ? "" 
-                        : (allComments.map((comment)=>(
+
+                        {(post.comments === undefined) ? "" 
+                        : (post.comments.data.map((comment)=>(
                           <ParentComment comment={comment} />
                         )))}
                         
@@ -146,12 +146,15 @@ const Posts = () => {
                     </div>
                   </div>
                 </div>
+                </div>
+              ))}
+                
+
+                
               </div>
             </div>
           </div>
         </div>
-          )))      
-      }
     </div>
   )
 }

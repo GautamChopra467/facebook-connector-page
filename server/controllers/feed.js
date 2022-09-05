@@ -58,10 +58,10 @@ module.exports = {
 
             const {id} = req.params;
 
-            const singlepageinfo = await axios.get(`${process.env.ALL_POST_INFO}/${id}/feed?fields=full_picture,message,comments{created_time,from}
+            const singlepageinfo = await axios.get(`${process.env.ALL_POST_INFO}/${id}/feed?fields=full_picture,created_time,message,comments{created_time,from,message}
             &access_token=${process.env.PAGE_ACCESS_TOKEN}`)
 
-           res.send(singlepageinfo.data)
+           res.send(singlepageinfo.data.data)
 
         }catch(err){
            console.log(err)
@@ -82,7 +82,7 @@ module.exports = {
            console.log(err)
         }
     }
-
+    // 108046888706313/posts?fields=full_picture,comments{from,created_time,message,like_count,comment_count}
 }
 
 
