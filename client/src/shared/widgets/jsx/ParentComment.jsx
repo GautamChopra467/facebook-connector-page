@@ -3,9 +3,20 @@ import "../../../modules/feed/presentation/styles/PostsStyles.css";
 import ProfileImage from "../../../assets/img/profile-image.png";
 import { GiMicrophone } from "react-icons/gi";
 import { MdDelete } from "react-icons/md";
+import axios from "axios";
 
 const ParentComment = ({comment}) => {
   var currentDate = new Date();
+
+  const deleteCommentMsg = (id) => {
+    console.log(id)
+    axios.delete(`${process.env.REACT_APP_BACKEND_PORT}deletecomment/${id}`).then(({data}) => {
+      if(data){
+        console.log("Deleted")
+      }
+    }).catch(err => console.log(err))
+  }
+
   return (
     <div className="parent_comment_container_posts">
       <div className="parent_comment_box_posts">
@@ -34,7 +45,7 @@ const ParentComment = ({comment}) => {
             </div>
 
             <div className="parent_info_container_posts">
-              <MdDelete className="parent_info_icon_posts" />
+              <MdDelete className="parent_info_icon_posts" onClick={() => deleteCommentMsg(comment.id)} />
             </div>
           </div>
 

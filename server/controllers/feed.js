@@ -83,15 +83,14 @@ module.exports = {
            console.log(err)
         }
     },
-    async deleteComment(){
+    async deleteComment(req, res){
          
         const {id} = req.params;
 
-        console.log(id)
-
         try{
-
-            axios.delete(`${processs.env.ALL_POST_INFO}/${id}`)
+            await axios.delete(`${process.env.ALL_POST_INFO}/${id}?access_token=${process.env.PAGE_ACCESS_TOKEN}`)
+            
+            res.send({message : "true"})
         }catch(err){
             console.log(err)
         }
