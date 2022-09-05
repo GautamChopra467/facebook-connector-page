@@ -377,7 +377,7 @@
     background-color: #F0F2F5;
     border-radius: 18px;
     padding: 8px 12px;
-    width: 60%;
+    max-width: 60%;
     grid-gap: 4px;
 }
 
@@ -427,7 +427,7 @@
 
 .parent_info_icon_posts {
     font-size: 20px;
-    color: #65676B;
+    color: #C2C2C2;
     cursor: pointer;
 }
 

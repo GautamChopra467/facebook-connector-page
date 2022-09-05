@@ -2,7 +2,7 @@ import React from "react";
 import "../../../modules/feed/presentation/styles/PostsStyles.css";
 import ProfileImage from "../../../assets/img/profile-image.png";
 import { GiMicrophone } from "react-icons/gi";
-import { BsThreeDots } from "react-icons/bs";
+import { MdDelete } from "react-icons/md";
 
 const ParentComment = ({comment}) => {
   var currentDate = new Date();
@@ -34,7 +34,7 @@ const ParentComment = ({comment}) => {
             </div>
 
             <div className="parent_info_container_posts">
-              <BsThreeDots className="parent_info_icon_posts" />
+              <MdDelete className="parent_info_icon_posts" />
             </div>
           </div>
 
@@ -74,7 +74,7 @@ const ParentComment = ({comment}) => {
             </div>
 
             <div className="child_info_container_posts">
-              <BsThreeDots className="child_info_icon_posts" />
+              <MdDelete className="child_info_icon_posts" />
             </div>
           </div>
 

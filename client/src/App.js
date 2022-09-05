@@ -7,6 +7,8 @@ import Demo from './modules/feed/presentation/pages/Demo';
 import { useState } from 'react';
 import AccountPages from './modules/fbPage/presentation/pages/AccountPages';
 import SinglePage from './modules/fbPage/presentation/pages/SinglePage';
+import Register from './modules/user/presentation/pages/Register';
+import Login from './modules/user/presentation/pages/Login';
 
 const App = () => {
 
@@ -25,7 +27,8 @@ const App = () => {
     <>
     <BrowserRouter>
       <Routes>
-        <Route exact path='/' element={<Posts />} />
+        <Route exact path='/signup' element={<Register />} />
+        <Route exact path="/login" element={<Login />} /> 
         <Route exact path='/demo' element={<Demo />} />
         <Route exact path='/pages' element={<AccountPages />} />
         <Route exact path='/page/:id' element={<SinglePage />} />
