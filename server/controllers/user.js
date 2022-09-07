@@ -1,17 +1,17 @@
-const operations = require("../db/repository")
+const operations = require("../db/repository/user_operations")
 
 module.exports = {
 
-   async register(){
+   async register(req,res){
       
+    try{
         const user = req.body;
-        
-        const found = await operations.registeredEmail(user.email);
+
+        const found = operations.registeredEmail(user.email);
 
         if(found){
-            res.send({message:"User Already Registered !"});
-        }
-        else{
+            res.send({message:"User already Registered !"});
+        }else{
             const result = await operations.add(user);
 
             if(result){
@@ -19,12 +19,24 @@ module.exports = {
             }
             else{
                 res.send({message:"Some Error Occured.Try Again !"});
-    
             }
         }
+    }catch(err){
+      console.log(err)
+    }
     },
-    login(){
-         
 
+   async login(req,res){
+         
+      const user = req.body;
+
+     const found = await operations.find(user);
+
+      if(found){
+         res.send({message:"true"})
+      }else{
+          res.send({message:"Invalid Credentials !"})
+      }
+     
     }
 }

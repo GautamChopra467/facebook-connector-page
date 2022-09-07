@@ -13,6 +13,10 @@ module.exports = {
             SIGNUP:"/signup",
             LOGIN:"/login"
 
+        },
+        MESSAGES:{
+            MESSAGE:"/message/:id",
+            POSTMESSAGE:"/message/:id/:ps_id"
         }
     }
 }

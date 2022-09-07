@@ -28,6 +28,7 @@ const Login = () => {
       ...user,
       [name]: value
     })
+    console.log(name,value);
   }
 
   const submitForm = (e) => {
@@ -38,27 +39,14 @@ const Login = () => {
 
   useEffect(() => {
   
-    if( Object.keys(formErrors).length === 0 && isSubmit ){
-      axios.post("http://localhost:8000/login",
+    if( Object.keys(formErrors).length === 0 && isSubmit ){  
+      axios.post(`${process.env.REACT_APP_BACKEND_PORT}login`,
       { 
         ...user
-      },{
-        withCredentials:true
       })
-      .then( ({data}) => {
- 
-        if(data.usertype === "student" && data.verified == false){
-         
-          navigate(`/student/${data.id}/detailsone`);
-        }else if(data.usertype === "student" && data.verified == true){
-         
-          navigate(`/student/${data.id}/internships`);
-        }else if(data.usertype === "company" && data.verified == false){
-          navigate(`/company/${data.id}/detailsone`);
-        }
-        else if(data.usertype === "company" && data.verified == true){
-        
-          navigate(`/company/info/${data.id}/dashboard`);
+      .then(({data}) => {
+        if(data.message){
+          navigate(`/pages`);
         }
         else {
              setFormErrors({final: data.message})
