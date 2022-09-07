@@ -19,7 +19,7 @@ const Posts = ({SinglePageInfo,callSinglePageInfo}) => {
   const [commentMsg, setCommentMsg] = useState("");
 
   const changeCommentMsg = (e) => {
-    console.log(e.target.value)
+    // console.log(e.target.value)
     setCommentMsg(e.target.value);
   }
 

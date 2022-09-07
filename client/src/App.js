@@ -9,6 +9,8 @@ import AccountPages from './modules/fbPage/presentation/pages/AccountPages';
 import SinglePage from './modules/fbPage/presentation/pages/SinglePage';
 import Register from './modules/user/presentation/pages/Register';
 import Login from './modules/user/presentation/pages/Login';
+import MessageContainer from './modules/fbMessage.jsx/presentation/pages/MessageContainer';
+import Message from './modules/fbMessage.jsx/presentation/pages/Message';
 
 const App = () => {
 
@@ -32,6 +34,8 @@ const App = () => {
         <Route exact path='/demo' element={<Demo />} />
         <Route exact path='/pages' element={<AccountPages />} />
         <Route exact path='/page/:id' element={<SinglePage />} />
+        <Route exact path="/temp" element={<MessageContainer />} />
+        <Route exact path="/message" element={<Message />} />
       </Routes>
     </BrowserRouter>
     {/* <button onClick={getComments}> Get Comments </button> */}

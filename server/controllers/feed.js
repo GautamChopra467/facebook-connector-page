@@ -77,6 +77,8 @@ module.exports = {
 
             const singlepageinfo = await axios.post(`${process.env.ALL_POST_INFO}/${id}/comments/?access_token=${process.env.PAGE_ACCESS_TOKEN}&message=${commentMsg}`)
 
+            console.log(singlepageinfo.data)
+
             res.send(true)
 
         }catch(err){
