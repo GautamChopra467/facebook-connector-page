@@ -12,16 +12,26 @@ import Login from './modules/user/presentation/pages/Login';
 
 const App = () => {
 
-  // const [allcomments,setAllComments] = useState([])
+  const [allcomments,setAllComments] = useState([])
 
+  const [allmessages,setPostMessages] = useState([])
 
-  // const getComments = ()=>{
-  //   axios.get(`${process.env.REACT_APP_BACKEND_PORT}pageinfo`).then(({data})=>{
-  //     setAllComments(data)
-  //   })
-  // }
+  const getComments = ()=>{
+    axios.get(`${process.env.REACT_APP_BACKEND_PORT}message/108046888706313`).then(({data})=>{
+      setAllComments(data)
+    })
 
-  // console.log(allcomments)
+  }
+
+  const postMessages = ()=>{
+    axios.post(`${process.env.REACT_APP_BACKEND_PORT}message/108046888706313/8628821597129716`,{
+      message:"Demo Message !"
+    }).then(({data})=>{
+      setAllComments(data)
+    })
+  }
+
+  console.log(allcomments)
 
   return (
     <>
@@ -34,7 +44,9 @@ const App = () => {
         <Route exact path='/page/:id' element={<SinglePage />} />
       </Routes>
     </BrowserRouter>
-    {/* <button onClick={getComments}> Get Comments </button> */}
+    <button onClick={getComments}> Get Message </button>
+
+    {/* <button onClick={postMessages}> Post Message </button> */}
 
     {/* <button onClick={printComment}> Single Comments </button> */} 
     {/* {

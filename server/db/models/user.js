@@ -1,28 +1,25 @@
-const { SchemaTypes } = require('mongoose');
+const mongoose = require('mongoose');
 
-const connection = require('../connection');
 
-const Schema = connection.Schema;
-
-const userSchema = new Schema({
+const userSchema = new mongoose.Schema({
     'name':{
-        type:SchemaTypes.String,
+        type:String,
         required:true, 
         unique:true
     },
     'password':{
-        type:SchemaTypes.String,
+        type:String,
         required:true
     },
     'phoneno':
     {
-        type:SchemaTypes.Number,
+        type:Number,
     },
     'email':{
-        type:SchemaTypes.sTring
+        type:String
     }
 });
 
-const UserModel = connection.model('users', userSchema);
+const UserModel = mongoose.model('users', userSchema);
 
 module.exports = UserModel;

@@ -16,13 +16,10 @@ const Register= ({theme, setTheme}) => {
   const [isSubmit, setIsSubmit] = useState(false);
   const [checkboxCheck, setCheckboxCheck] = useState(false);
 
-  const type = "register"
-
   const [user, setUser] = useState({
     name: "",
     email: "",
     password: "",
-    confirmpassword: "",
     mobile: "",
   });
 
@@ -42,10 +39,11 @@ const Register= ({theme, setTheme}) => {
 
   useEffect(() => {
     if( Object.keys(formErrors).length === 0 && isSubmit ){
-      axios.post("http://localhost:8000/signup", user)
+      axios.post(`${process.env.REACT_APP_BACKEND_PORT}signup`, user)
       .then( res => {
+        console.log(res.data.message);
         if(res.data.message === "true"){
-          navigate(`/emailverify/${type}`);
+          navigate("/login");
         }else {
           setFormErrors({final: res.data.message});
         }

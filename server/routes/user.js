@@ -8,7 +8,7 @@ const {SIGNUP,LOGIN} = require('../utils/constants/app_constants').ROUTES.USER;
 
 userRouter.post(SIGNUP,userCntrl.register);
 
-userRouter.get(LOGIN,userCntrl.login);
+userRouter.post(LOGIN,userCntrl.login);
 
 module.exports = userRouter;
 

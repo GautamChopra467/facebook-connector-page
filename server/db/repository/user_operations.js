@@ -1,16 +1,37 @@
 const UserModel = require("../models/user")
 
 module.exports = {
-
     add(user){
         var promise = UserModel.create(user);
         return promise;
     },
-    find(user){
-        const found = UserModel.findOne({}) 
+   async  find(user){
+
+        const found = await UserModel.findOne({email:user.email})
+
+        if(found){
+            if(found.password === user.password){
+                return true
+            }
+            else{
+                return false
+            }
+        }
+        else{ 
+            return false
+        }
+
     },
-    registeredEmail(){
-        
+    async registeredEmail(email){
+
+        const found = await UserModel.findOne({email})
+
+        if(found){
+            return true
+        }
+        else{
+            return false;
+        }
     }
     
 }
