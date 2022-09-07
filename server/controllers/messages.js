@@ -23,8 +23,6 @@ module.exports = {
 
     //    res.send(messages.data)
 
-    //    curl -i -X GET \
-//  "https://graph.facebook.com/v14.0/108046888706313/conversations?fields=messages%7Bfrom%2Cmessage%2Ccreated_time%2Cid%2Cto%7D=EAAFngNLzTzIBACAHWnZBbqKh3Aa0QqqpmLxhyHwhIqf5YIzRrSmaLrDQosxOZBSWDuFq0it5vVrKAX5SAlZBSeIZChMJIgO4PHpv0tbtDB7f3Neq07ax8WOOWTPzSe9oympIzVRtvNOZAm81OZBlDS0zpBblKw8ipVHfQ0fWZAn9PiZACxSdo5JEtAFM96ZBeQmM7rtZBEjp7UYQZDZD"
 
 
     },
