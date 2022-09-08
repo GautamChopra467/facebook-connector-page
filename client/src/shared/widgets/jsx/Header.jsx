@@ -27,7 +27,8 @@ const Header = () => {
   return (
     <div className={shadow ? "header_header header_shadow_header" : "header_header"}>
       <div className="left_section_header">
-        {/* <Link to="/" className="intern_header">Top Internships</Link> */}
+        <img src={Logo} alt="facebook" />
+        <h3>Facebook</h3>
       </div>
 
       <div className={click ? "right_section_header active_header" : "right_section_header"}>

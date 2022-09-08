@@ -6,7 +6,7 @@ import "../styles/LoginStyles.css";
 import { BsArrowRightShort } from "react-icons/bs";
 import axios from "axios";
 // import {useCookies} from 'react-cookie';
-import Navbar from "../../../../shared/widgets/jsx/Navbar";
+import Header from "../../../../shared/widgets/jsx/Header";
 
 const Login = () => {
 
@@ -90,7 +90,7 @@ const Login = () => {
   return (
     <div>
       
-      <Navbar />
+      <Header />
 
       <div className="main_login">
         <div className="left-part_login">
