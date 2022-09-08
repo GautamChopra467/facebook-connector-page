@@ -516,8 +516,6 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    word-break: break-all;
-    word-wrap: break-word;
 }
 
 .message_box_type1_message p {
@@ -613,6 +611,12 @@
     color: #000000BF;
 }
 
+.send_icon_message {
+    font-size: 20px;
+    color: #828282;
+    cursor: pointer;
+    margin-top: -8px;
+}
 
 /* THIRD SECTION */
 

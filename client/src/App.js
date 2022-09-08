@@ -38,7 +38,7 @@ const App = () => {
         <Route exact path='/pages' element={<AccountPages />} />
         <Route exact path='/page/:id' element={<SinglePage />} />
         <Route exact path="/temp" element={<MessageContainer />} />
-        <Route exact path="/message" element={<Message />} />
+        <Route exact path="/message/:id" element={<Message />} />
       </Routes>
     </BrowserRouter>
 

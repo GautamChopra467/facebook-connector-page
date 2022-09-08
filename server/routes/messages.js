@@ -12,7 +12,7 @@ msgRouter.post(POSTMESSAGE,msgCntrl.postMessage);
 
 msgRouter.get(SENDER,msgCntrl.senderInfo);
 
-msgRouter.get(CONVERSATIONS,msgCntrl.getConversations);
+// msgRouter.get(CONVERSATIONS,msgCntrl.getConversations);
 
 module.exports = msgRouter;
 

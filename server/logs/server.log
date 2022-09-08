@@ -1,0 +1,2 @@
+::1 - - [08/Sep/2022:16:27:54 +0000] "GET /sender HTTP/1.1" 200 2218 "http://localhost:3000/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Mobile Safari/537.36"
+::1 - - [08/Sep/2022:16:30:05 +0000] "OPTIONS /message HTTP/1.1" 204 0 "http://localhost:3000/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Mobile Safari/537.36"

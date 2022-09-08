@@ -4,6 +4,7 @@ module.exports = {
 
     async senderInfo(req,res){
 
+        console.log("reached")
         let info = [];
 
         const {data} = await axios.get(`https://graph.facebook.com/v14.0/me/conversations?fields=participants,messages{message,from,to,created_time},snippet&access_token=${process.env.PAGE_ACCESS_TOKEN}`)
@@ -29,35 +30,27 @@ module.exports = {
     }
     res.send(info)
     },
-    async getConversations(req,res){
-
-        const {id,c_id} = req.params;
-
-        console.log(id);
-        console.log(c_id);
-
+    async postMessage(req,res){
         // const PageAccessToken = await axios.get(`${process.env.GRAPH_API_URL}/${id}?fields=access_token&access_token=${process.env.LONG_LIVE_ACCESS_TOKEN}`);
 
         // const data = await axios.get(`${process.env.GRAPH_API_URL}/${c_id}/messages?fields=message,from,to,created_time&access_token=${PageAccessToken.data.access_token}`);
 
         // console.log(data);
-
-    },
-    async postMessage(req,res){
-
         try{
 
-            const {id,ps_id} = req.params;
+            // const {id,ps_id} = req.params;
 
-            const {message} = req.body;
+            const {inputMessage,id,ps_id} = req.body;
+            console.log(inputMessage,id,ps_id)
 
-            console.log(message);
-            console.log(id);
-            console.log(ps_id);
+            // console.log(message);
+            // console.log(id);
+            // console.log(ps_id);
 
-            const messageposted = await axios.post(`${process.env.GRAPH_API_URL}/${id}/messages?recipient={'id':${ps_id}}&messaging_type=RESPONSE&message={'text':${message}}&access_token=${process.env.PAGE_ACCESS_TOKEN}`)
+            const messageposted = await axios.post(`${process.env.GRAPH_API_URL}/${id}/messages?recipient={'id':${ps_id}}&messaging_type=RESPONSE&message={'text':${inputMessage}}&access_token=${process.env.PAGE_ACCESS_TOKEN}`)
 
             console.log(messageposted.data)
+            res.send(true)
 
         }catch(err){
             console.log(err)

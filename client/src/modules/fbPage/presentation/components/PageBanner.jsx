@@ -2,9 +2,12 @@ import React from 'react';
 import "../styles/PageBannerStyles.css";
 import { BsSearch, BsMessenger, BsThreeDots } from "react-icons/bs";
 import { IoMdThumbsUp } from "react-icons/io";
+import { useNavigate, useParams } from 'react-router-dom';
 
 const PageBanner = ({profileInfo}) => {
 
+    const navigate = useNavigate();
+    const {id} = useParams()
  
   return (
     <div>
@@ -37,7 +40,7 @@ const PageBanner = ({profileInfo}) => {
                             <IoMdThumbsUp className="thumbs_up_icon_pagebanner" />
                             <p>Like</p>
                         </button>
-                        <button className='btn_dark_pagebanner'>
+                        <button className='btn_dark_pagebanner' onClick={() => navigate(`/message/${id}`)}>
                             <BsMessenger className="message_icon_pagebanner" />
                             <p>Message</p>
                         </button>

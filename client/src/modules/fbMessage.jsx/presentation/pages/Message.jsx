@@ -5,7 +5,7 @@ import { BsBarChartFill, BsClock, BsCalendarDateFill, BsMegaphoneFill, BsFillQue
 import { FaBars, FaBell, FaReact } from "react-icons/fa";
 import { TbBrandMeta, TbMessageDots } from "react-icons/tb";
 import { HiHome } from "react-icons/hi";
-import { IoDocuments, IoSearchOutline } from "react-icons/io5";
+import { IoDocuments, IoSearchOutline, IoSend } from "react-icons/io5";
 import { MdFeedback } from "react-icons/md";
 import { FcCheckmark } from "react-icons/fc";
 import ProfileImage from "../../../../assets/img/profile-image.png";
@@ -22,9 +22,7 @@ const Message = () => {
 
 
     const {id} = useParams();
-
-    // console.log(id);
-
+    
      const [SenderProfile,setSenderProfile] = useState([])
 
      const [conversationId,setConversationId] = useState()
@@ -34,7 +32,7 @@ const Message = () => {
         .then(({data})=>{
           console.log(data);
           setSenderProfile(data);
-          setConversationId(data[0].id);
+          setConversationId(data[0].conversation_id);
         }).catch(err=>console.log(err));
       }
     
@@ -42,6 +40,26 @@ const Message = () => {
         setConversationId(id)
       }
 
+      const [inputMessage, setInputMessage] = useState("")
+
+      let ps_id;
+
+      const handleMessage = (e) => {
+        setInputMessage(e.target.value);
+      }
+
+      const submitMessage = (ps_id) => {
+        console.log(ps_id, inputMessage)
+        axios.post(`${process.env.REACT_APP_BACKEND_PORT}message`, {id, ps_id, inputMessage}).then(({data}) => {
+            if(data){
+                console.log("REACHED")
+            }
+        }      
+        ).catch(err => console.log(err));
+      }
+
+    //   const [selectedConversation, setSelectedConversation] = useState();
+    let selectedConversation;
 
       useEffect(()=>{ 
         getSenderProfile();
@@ -139,7 +157,7 @@ const Message = () => {
                     <div className="chat_list_bottom_section_message">
                                 {
                                     SenderProfile.map((sender)=>(
-                        <div className="chat_list_user_item_container_message" key={sender.id} onClick={()=>setConversations(sender.conversation_id)}>
+                        <div className={conversationId === sender.conversation_id ? "chat_list_user_item_container_message active_user_item_message" : "chat_list_user_item_container_message"} key={sender.id} onClick={()=>setConversations(sender.conversation_id)}>
                                         
                             <div className="chat_list_user_item_left_section_message">
                                         <div className="chat_list_user_item_avatar_container_message">
@@ -164,11 +182,19 @@ const Message = () => {
 
                 
                 {/* CHAT WINDOW */}
-                <div className="chat_window_container_message">
+                {SenderProfile.forEach((element) => {
+                    if(element.conversation_id === conversationId){
+                        selectedConversation = element;
+                        ps_id = element.id;
+                    }
+                })}
+
+                {selectedConversation && (
+                    <div className="chat_window_container_message">
                     <div className="chat_window_top_section_message">
                         <div className="chat_window_top_left_section_message">
-                            <img src={ProfileImage} alt="profile" />
-                            <h3>Demo Page</h3>
+                            <img src={selectedConversation.profile_pic} alt="profile" />
+                            <h3>{selectedConversation.first_name}&nbsp;{selectedConversation.last_name}</h3>
                         </div>
 
                         <div className="chat_window_top_right_section_message">
@@ -184,20 +210,27 @@ const Message = () => {
                         </div>
 
                         <div className="message_middle_section_message">
-                            <div className="message_container_type1_message">
-                                <div className="message_avatar_container_message">
-                                    <img src={ProfileImage} alt="profile" />
+                            {selectedConversation && selectedConversation.message.data.map((msg) => (
+                                <div>
+                                {msg.from.id === id ? (
+                                    <div className="message_container_type2_message" key={msg.id}>
+                                    <div className="message_box_type2_message">
+                                        <p>{msg.message}</p>
+                                    </div>
                                 </div>
+                                ) : (
+                                    <div className="message_container_type1_message" key={msg.id}>
                                 <div className="message_box_type1_message">
-                                    <p>test message dated 06/09-22</p>
+                                    <p>{msg.message}</p>
                                 </div>
-                            </div>
+                                 </div>
+                                )}
+                                 
 
-                            <div className="message_container_type2_message">
-                                <div className="message_box_type2_message">
-                                    <p>test message dated 06/09-22</p>
+                            
                                 </div>
-                            </div>
+                            ))}
+                           
                         </div>
 
                         <div className="message_bottom_section_message">
@@ -206,7 +239,8 @@ const Message = () => {
                                     <div className="input_avatar_container">
                                         <img src={ProfileImage} alt="profile" />
                                     </div>
-                                    <input type="text" placeholder="Reply in Messenger..." />
+                                    <input onChange={handleMessage} value={inputMessage} type="text" placeholder="Reply in Messenger..." />
+                                    <IoSend onClick={() => submitMessage(ps_id)} className="send_icon_message" />
                                 </div>
 
                                 <div className="input_bottom_section">
@@ -232,6 +266,8 @@ const Message = () => {
  
                     </div>
                 </div>
+                )}
+                
 
             </div>
           </div>
