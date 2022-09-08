@@ -4,15 +4,18 @@ import ProfileImage from "../../../assets/img/profile-image.png";
 import { GiMicrophone } from "react-icons/gi";
 import { MdDelete } from "react-icons/md";
 import axios from "axios";
+import {useParams} from "react-router-dom" 
 
-const ParentComment = ({comment}) => {
+const ParentComment = ({comment,callSinglePageInfo}) => {
   var currentDate = new Date();
 
-  const deleteCommentMsg = (id) => {
+  const {id} = useParams();
+
+  const deleteCommentMsg = (pc_id) => {
     console.log(id)
-    axios.delete(`${process.env.REACT_APP_BACKEND_PORT}deletecomment/${id}`).then(({data}) => {
+    axios.delete(`${process.env.REACT_APP_BACKEND_PORT}deletecomment/${id}/${pc_id}`).then(({data}) => {
       if(data){
-        console.log("Deleted")
+        callSinglePageInfo();
       }
     }).catch(err => console.log(err))
   }

@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect,useState} from "react";
 import "../styles/MessageStyles.css";
 import { AiFillMessage, AiFillSetting, AiOutlineSearch } from "react-icons/ai";
 import { BsBarChartFill, BsClock, BsCalendarDateFill, BsMegaphoneFill, BsFillQuestionCircleFill, BsSliders } from "react-icons/bs";
@@ -8,8 +8,38 @@ import { HiHome } from "react-icons/hi";
 import { IoDocuments, IoSearchOutline } from "react-icons/io5";
 import { MdFeedback } from "react-icons/md";
 import { FcCheckmark } from "react-icons/fc";
+import axios from "axios";
+import {useParams} from "react-router-dom";
+
 
 const Message = () => {
+
+
+    const {id} = useParams();
+
+     const [SenderProfile,setSenderProfile] = useState([])
+
+     const [conversationId,setConversationId] = useState()
+
+    const getSenderProfile = ()=>{
+        axios.get(`${process.env.REACT_APP_BACKEND_PORT}sender`)
+        .then(({data})=>{
+          console.log(data);
+          setSenderProfile(data);
+          setConversationId(data[0].id);
+        }).catch(err=>console.log(err));
+      }
+
+      const conversationMessages = (id)=>{
+          
+      }
+
+
+      useEffect(()=>{ 
+        getSenderProfile();
+        conversationMessages(conversationId);
+      },[])
+
   return (
     <div>
       <div className="main_container_message">
@@ -100,23 +130,28 @@ const Message = () => {
                     </div>
 
                     <div className="chat_list_bottom_section_message">
-                        <div className="chat_list_user_item_container_message">
+                                {
+                                    SenderProfile.map((sender)=>(
+                        <div className="chat_list_user_item_container_message" key={sender.id} onClick={()=>conversationMessages(sender.conversation_id)}>
+                                        
                             <div className="chat_list_user_item_left_section_message">
-                                <div className="chat_list_user_item_avatar_container_message">
-                                    <img src="" alt="avatar" />
-                                </div>
-
-                                <div className="chat_list_user_item_details_section_message">
-                                    <h4>Demo Page</h4>
-                                    <p>Hello, Gautam</p>
-                                </div>
-                            </div>
-
-                            <div className="chat_list_user_item_right_section_message">
+                                        <div className="chat_list_user_item_avatar_container_message">
+                                        <img src={sender.profile_pic} alt="avatar" />
+                                    </div>
+    
+                                    <div className="chat_list_user_item_details_section_message">
+                                        <h4>{sender.first_name} {sender.last_name}</h4>
+                                        <p>{sender.snippet}</p>
+                                    </div>
+                                 </div>
+                                 <div className="chat_list_user_item_right_section_message">
                                 <p>2:50 AM</p>
                                 <FcCheckmark className="tick_icon_message" />
                             </div>
                         </div>
+                                    ))
+                                }
+ 
                     </div>
                 </div>
 

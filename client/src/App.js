@@ -18,13 +18,6 @@ const App = () => {
 
   const [allmessages,setPostMessages] = useState([])
 
-  const getComments = ()=>{
-    axios.get(`${process.env.REACT_APP_BACKEND_PORT}message/108046888706313`).then(({data})=>{
-      setAllComments(data)
-    })
-
-  }
-
   const postMessages = ()=>{
     axios.post(`${process.env.REACT_APP_BACKEND_PORT}message/108046888706313/8628821597129716`,{
       message:"Demo Message !"
@@ -33,7 +26,6 @@ const App = () => {
     })
   }
 
-  console.log(allcomments)
 
   return (
     <>
@@ -48,8 +40,7 @@ const App = () => {
         <Route exact path="/message" element={<Message />} />
       </Routes>
     </BrowserRouter>
-    <button onClick={getComments}> Get Message </button>
-
+    {/* <button onClick={getComments}> Get Message </button> */}
     {/* <button onClick={postMessages}> Post Message </button> */}
 
     {/* <button onClick={printComment}> Single Comments </button> */} 
