@@ -28,7 +28,7 @@ const Message = () => {
      const [conversationId,setConversationId] = useState()
 
     const getSenderProfile = ()=>{
-        axios.get(`${process.env.REACT_APP_BACKEND_PORT}sender`)
+        axios.get(`${process.env.REACT_APP_BACKEND_PORT}sender/${id}`)
         .then(({data})=>{
           console.log(data);
           setSenderProfile(data);
@@ -210,25 +210,22 @@ const Message = () => {
                         </div>
 
                         <div className="message_middle_section_message">
-                            {selectedConversation && selectedConversation.message.data.map((msg) => (
-                                <div>
+                            {selectedConversation && selectedConversation.message.map((msg) => (
+                                <>
                                 {msg.from.id === id ? (
                                     <div className="message_container_type2_message" key={msg.id}>
-                                    <div className="message_box_type2_message">
-                                        <p>{msg.message}</p>
+                                        <div className="message_box_type2_message">
+                                            <p>{msg.message}</p>
+                                        </div>
                                     </div>
-                                </div>
                                 ) : (
                                     <div className="message_container_type1_message" key={msg.id}>
-                                <div className="message_box_type1_message">
-                                    <p>{msg.message}</p>
-                                </div>
-                                 </div>
+                                        <div className="message_box_type1_message">
+                                            <p>{msg.message}</p>
+                                        </div>
+                                    </div>
                                 )}
-                                 
-
-                            
-                                </div>
+                                </>
                             ))}
                            
                         </div>
@@ -236,9 +233,7 @@ const Message = () => {
                         <div className="message_bottom_section_message">
                             <div className="input_container_message">
                                 <div className="input_top_section">
-                                    <div className="input_avatar_container">
-                                        <img src={ProfileImage} alt="profile" />
-                                    </div>
+                                    
                                     <input onChange={handleMessage} value={inputMessage} type="text" placeholder="Reply in Messenger..." />
                                     <IoSend onClick={() => submitMessage(ps_id)} className="send_icon_message" />
                                 </div>

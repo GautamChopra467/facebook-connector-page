@@ -4,19 +4,22 @@ module.exports = {
 
     async senderInfo(req,res){
 
-        console.log("reached")
+        const {id} = req.params;
+
         let info = [];
 
-        const {data} = await axios.get(`https://graph.facebook.com/v14.0/me/conversations?fields=participants,messages{message,from,to,created_time},snippet&access_token=${process.env.PAGE_ACCESS_TOKEN}`)
+        const PageAccessToken = await axios.get(`${process.env.GRAPH_API_URL}/${id}?fields=access_token&access_token=${process.env.LONG_LIVE_ACCESS_TOKEN}`);
+
+        const {data} = await axios.get(`${process.env.GRAPH_API_URL}/me/conversations?fields=participants,messages{message,from,to,created_time},snippet&access_token=${PageAccessToken.data.access_token}`)
 
         for(let i=0;i<data.data.length;i++){
             for(let j=0;j<data.data[i].participants.data.length;j++){
-                if(data.data[i].participants.data[j].id !== "108046888706313"){
+                if(data.data[i].participants.data[j].id !== id){
                     try{
-                        const participant =  await axios.get(`https://graph.facebook.com/v14.0/${data.data[i].participants.data[j].id}?access_token=${process.env.PAGE_ACCESS_TOKEN}`)
+                        const participant =  await axios.get(`${process.env.GRAPH_API_URL}/${data.data[i].participants.data[j].id}?access_token=${process.env.PAGE_ACCESS_TOKEN}`)
                         participant.data["conversation_id"] = data.data[i].id;
                         participant.data["snippet"] = data.data[i].snippet;
-                        participant.data["message"] = data.data[i].messages;
+                        participant.data["message"] = data.data[i].messages.data.reverse();
                         info.push(participant.data);
                     }catch(err){
                         if(err.code == "ERR_BAD_REQUEST"){
@@ -43,11 +46,21 @@ module.exports = {
             const {inputMessage,id,ps_id} = req.body;
             console.log(inputMessage,id,ps_id)
 
-            // console.log(message);
-            // console.log(id);
-            // console.log(ps_id);
+            const PageAccessToken = await axios.get(`${process.env.GRAPH_API_URL}/${id}?fields=access_token&access_token=${process.env.LONG_LIVE_ACCESS_TOKEN}`);
+            // const messageposted = await axios.post(`${process.env.GRAPH_API_URL}/${id}/messages?recipient={'id':${ps_id}}&messaging_type=RESPONSE&message={'text':${inputMessage}}&access_token=${process.env.PAGE_ACCESS_TOKEN}`)
 
-            const messageposted = await axios.post(`${process.env.GRAPH_API_URL}/${id}/messages?recipient={'id':${ps_id}}&messaging_type=RESPONSE&message={'text':${inputMessage}}&access_token=${process.env.PAGE_ACCESS_TOKEN}`)
+            const messageposted = await axios.post(
+                `${process.env.GRAPH_API_URL}/${id}/messages`,
+                '',
+                {
+                    params: {
+                        'recipient': `{\'id\':${ps_id}}`,
+                        'messaging_type': 'RESPONSE',
+                        'message': `{\'text\':\'${inputMessage}\'}`,
+                        'access_token': `${PageAccessToken.data.access_token}`
+                    }
+                }
+            );
 
             console.log(messageposted.data)
             res.send(true)

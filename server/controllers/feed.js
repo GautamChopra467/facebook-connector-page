@@ -6,10 +6,10 @@ module.exports = {
 
         const {id} = req.params;
       
-       const PageAccessToken = await axios.get(`https://graph.facebook.com/v14.0/${id}?fields=access_token&access_token=${process.env.LONG_LIVE_ACCESS_TOKEN}`);
+       const PageAccessToken = await axios.get(`${process.env.GRAPH_API_URL}/${id}?fields=access_token&access_token=${process.env.LONG_LIVE_ACCESS_TOKEN}`);
 
       
-       const data = await axios.get(`https://graph.facebook.com/v14.0/me?fields=picture%2Cname%2Cfollowers_count&access_token=${PageAccessToken.data.access_token}`);
+       const data = await axios.get(`${process.env.GRAPH_API_URL}/me?fields=picture%2Cname%2Cfollowers_count&access_token=${PageAccessToken.data.access_token}`);
 
        res.send(data.data);
 
@@ -44,7 +44,7 @@ module.exports = {
     async allPostInfo(req, res) {
         try {
 
-            const PageAccessToken = await axios.get(`https://graph.facebook.com/v14.0/${id}?fields=access_token&access_token=${process.env.LONG_LIVE_ACCESS_TOKEN}`);
+            const PageAccessToken = await axios.get(`${process.env.GRAPH_API_URL}/${id}?fields=access_token&access_token=${process.env.LONG_LIVE_ACCESS_TOKEN}`);
 
             const allPostInfo = await axios.get(`${process.env.GRAPH_API_URL}?fields=full_picture,message,comments,likes,shares&access_token=${PageAccessToken.data.access_token}`)
 
@@ -81,8 +81,6 @@ module.exports = {
             const PageAccessToken = await axios.get(`${process.env.GRAPH_API_URL}/${id}?fields=access_token&access_token=${process.env.LONG_LIVE_ACCESS_TOKEN}`);
 
             const singlepageinfo = await axios.post(`${process.env.GRAPH_API_URL}/${pc_id}/comments/?access_token=${PageAccessToken.data.access_token}&message=${commentMsg}`)
-
-            console.log(singlepageinfo.data)
 
             res.send(true)
 
