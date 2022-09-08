@@ -1,13 +1,18 @@
 import React from "react";
 import "../styles/MessageStyles.css";
 import { AiFillMessage, AiFillSetting, AiOutlineSearch } from "react-icons/ai";
-import { BsBarChartFill, BsClock, BsCalendarDateFill, BsMegaphoneFill, BsFillQuestionCircleFill, BsSliders } from "react-icons/bs";
+import { BsBarChartFill, BsClock, BsCalendarDateFill, BsMegaphoneFill, BsFillQuestionCircleFill, BsSliders, BsThreeDots, BsTable, BsEmojiSmile } from "react-icons/bs";
 import { FaBars, FaBell, FaReact } from "react-icons/fa";
-import { TbBrandMeta } from "react-icons/tb";
+import { TbBrandMeta, TbMessageDots } from "react-icons/tb";
 import { HiHome } from "react-icons/hi";
 import { IoDocuments, IoSearchOutline } from "react-icons/io5";
 import { MdFeedback } from "react-icons/md";
 import { FcCheckmark } from "react-icons/fc";
+import ProfileImage from "../../../../assets/img/profile-image.png";
+import { FiCheck } from "react-icons/fi";
+import { BiCheck } from "react-icons/bi";
+import { IoMdThumbsUp } from "react-icons/io";
+import { ImAttachment } from "react-icons/im";
 
 const Message = () => {
   return (
@@ -100,10 +105,10 @@ const Message = () => {
                     </div>
 
                     <div className="chat_list_bottom_section_message">
-                        <div className="chat_list_user_item_container_message">
+                        <div className="chat_list_user_item_container_message active_user_item_message">
                             <div className="chat_list_user_item_left_section_message">
                                 <div className="chat_list_user_item_avatar_container_message">
-                                    <img src="" alt="avatar" />
+                                    <img src={ProfileImage} alt="avatar" />
                                 </div>
 
                                 <div className="chat_list_user_item_details_section_message">
@@ -114,7 +119,94 @@ const Message = () => {
 
                             <div className="chat_list_user_item_right_section_message">
                                 <p>2:50 AM</p>
-                                <FcCheckmark className="tick_icon_message" />
+                                <BiCheck className="tick_icon_message" />
+                            </div>
+                        </div>
+
+                        <div className="chat_list_user_item_container_message">
+                            <div className="chat_list_user_item_left_section_message">
+                                <div className="chat_list_user_item_avatar_container_message">
+                                    <img src={ProfileImage} alt="avatar" />
+                                </div>
+
+                                <div className="chat_list_user_item_details_section_message">
+                                    <h4>Demo Page</h4>
+                                    <p>Hello, Gautam</p>
+                                </div>
+                            </div>
+
+                            <div className="chat_list_user_item_right_section_message">
+                                <p>2:50 AM</p>
+                                <BiCheck className="tick_icon_message" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+                {/* CHAT WINDOW */}
+                <div className="chat_window_container_message">
+                    <div className="chat_window_top_section_message">
+                        <div className="chat_window_top_left_section_message">
+                            <img src={ProfileImage} alt="profile" />
+                            <h3>Demo Page</h3>
+                        </div>
+
+                        <div className="chat_window_top_right_section_message">
+                            <div className="chat_window_three_dots_container_message">
+                                <BsThreeDots className="three_dots_icon_message" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="message_section_message">
+                        <div className="message_top_section_message">
+                            <p>1:50 AM</p>
+                        </div>
+
+                        <div className="message_middle_section_message">
+                            <div className="message_container_type1_message">
+                                <div className="message_avatar_container_message">
+                                    <img src={ProfileImage} alt="profile" />
+                                </div>
+                                <div className="message_box_type1_message">
+                                    <p>test message dated 06/09-22</p>
+                                </div>
+                            </div>
+
+                            <div className="message_container_type2_message">
+                                <div className="message_box_type2_message">
+                                    <p>test message dated 06/09-22</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="message_bottom_section_message">
+                            <div className="input_container_message">
+                                <div className="input_top_section">
+                                    <div className="input_avatar_container">
+                                        <img src={ProfileImage} alt="profile" />
+                                    </div>
+                                    <input type="text" placeholder="Reply in Messenger..." />
+                                </div>
+
+                                <div className="input_bottom_section">
+                                    <div className="input_bottom_icon_container_message">
+                                        <ImAttachment className="attach_icon_message" />
+                                    </div>
+                                    <div className="input_bottom_icon_container_message">
+                                        <TbMessageDots className="attach_icon_message" />
+                                    </div>
+                                    <div className="input_bottom_icon_container_message">
+                                        <BsEmojiSmile className="attach_icon_message" />
+                                    </div>
+                                    <div className="input_bottom_icon_container_message">
+                                        <BsTable className="attach_icon_message" />
+                                    </div>
+                                    <div className="input_bottom_icon_container_message">
+                                        <IoMdThumbsUp className="attach_icon_message" />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -124,7 +216,11 @@ const Message = () => {
           </div>
         </div>
 
-        <div className="third_section_message"></div>
+        <div className="third_section_message">
+            <div className="third_section_box_message">
+                
+            </div>
+        </div>
       </div>
     </div>
   );

@@ -11,6 +11,7 @@ import Register from './modules/user/presentation/pages/Register';
 import Login from './modules/user/presentation/pages/Login';
 import MessageContainer from './modules/fbMessage.jsx/presentation/pages/MessageContainer';
 import Message from './modules/fbMessage.jsx/presentation/pages/Message';
+import Navbar from './shared/widgets/jsx/Navbar';
 
 const App = () => {
 
@@ -48,6 +49,7 @@ const App = () => {
         <Route exact path="/message" element={<Message />} />
       </Routes>
     </BrowserRouter>
+    <Navbar />
     <button onClick={getComments}> Get Message </button>
 
     {/* <button onClick={postMessages}> Post Message </button> */}

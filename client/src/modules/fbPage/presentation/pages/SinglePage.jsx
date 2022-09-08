@@ -1,6 +1,6 @@
 import React, { useEffect,useState } from 'react';
 import "../styles/PageBannerStyles.css";
-import Header from '../../../../shared/widgets/jsx/Header'
+import Navbar from '../../../../shared/widgets/jsx/Navbar'
 import PageBanner from '../components/PageBanner';
 import Posts from "../../../feed/presentation/pages/Posts";
 import PhotoImage from "../../../../assets/img/facebook-logo.png";
@@ -31,7 +31,7 @@ const SinglePage = () => {
 
   return (
     <div>
-      <Header />
+      <Navbar />
       <div className='main_container_singlepage'>
         <PageBanner  />
         <div className='main_container_bottom_section_singlepage'>

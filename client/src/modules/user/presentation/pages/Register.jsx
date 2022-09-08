@@ -4,7 +4,7 @@ import SignUpLogo from "../../../../assets/img/signup-image.png";
 import "../styles/RegisterStyles.css";
 import { BsArrowRightShort } from "react-icons/bs";
 import axios from "axios";
-import Header from "../../../../shared/widgets/jsx/Header";
+import Navbar from "../../../../shared/widgets/jsx/Navbar";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 const Register= ({theme, setTheme}) => {
@@ -98,7 +98,7 @@ const Register= ({theme, setTheme}) => {
 
   return (
     <div>
-      <Header theme={theme} setTheme={setTheme} />
+      <Navbar theme={theme} setTheme={setTheme} />
 
       <div className="main_signup">
         <div className="left-part_signup">
