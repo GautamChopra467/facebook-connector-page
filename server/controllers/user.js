@@ -7,11 +7,14 @@ module.exports = {
     try{
         const user = req.body;
 
-        const found = operations.registeredEmail(user.email);
+        console.log(req.body);
 
-        if(found){
+        const foundUser = await operations.registeredEmail(user.email);
+
+        if(foundUser){
             res.send({message:"User already Registered !"});
         }else{
+
             const result = await operations.add(user);
 
             if(result){
@@ -22,7 +25,7 @@ module.exports = {
             }
         }
     }catch(err){
-      console.log(err)
+      console.log(err);
     }
     },
 

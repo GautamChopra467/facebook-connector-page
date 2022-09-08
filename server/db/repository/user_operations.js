@@ -24,10 +24,12 @@ module.exports = {
     },
     async registeredEmail(email){
 
+        console.log(email);
+
         const found = await UserModel.findOne({email})
 
         if(found){
-            return true
+            return true;
         }
         else{
             return false;

@@ -23,6 +23,8 @@ const Message = () => {
 
     const {id} = useParams();
 
+    // console.log(id);
+
      const [SenderProfile,setSenderProfile] = useState([])
 
      const [conversationId,setConversationId] = useState()
@@ -35,15 +37,14 @@ const Message = () => {
           setConversationId(data[0].id);
         }).catch(err=>console.log(err));
       }
-
-      const conversationMessages = (id)=>{
-          
+    
+      const setConversations = (id)=>{
+        setConversationId(id)
       }
 
 
       useEffect(()=>{ 
         getSenderProfile();
-        conversationMessages(conversationId);
       },[])
 
   return (
@@ -138,7 +139,7 @@ const Message = () => {
                     <div className="chat_list_bottom_section_message">
                                 {
                                     SenderProfile.map((sender)=>(
-                        <div className="chat_list_user_item_container_message" key={sender.id} onClick={()=>conversationMessages(sender.conversation_id)}>
+                        <div className="chat_list_user_item_container_message" key={sender.id} onClick={()=>setConversations(sender.conversation_id)}>
                                         
                             <div className="chat_list_user_item_left_section_message">
                                         <div className="chat_list_user_item_avatar_container_message">
