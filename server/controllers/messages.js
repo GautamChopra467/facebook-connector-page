@@ -15,7 +15,7 @@ module.exports = {
                         const participant =  await axios.get(`https://graph.facebook.com/v14.0/${data.data[i].participants.data[j].id}?access_token=${process.env.PAGE_ACCESS_TOKEN}`)
                         participant.data["conversation_id"] = data.data[i].id;
                         participant.data["snippet"] = data.data[i].snippet;
-                       
+                        participant.data["message"] = data.data[i].messages;
                         info.push(participant.data);
                     }catch(err){
                         if(err.code == "ERR_BAD_REQUEST"){
@@ -28,29 +28,19 @@ module.exports = {
         }
     }
     res.send(info)
-},
-   async getMessages(req,res){
+    },
+    async getConversations(req,res){
 
-        const {id} = req.params;
+        const {id,c_id} = req.params;
 
-        console.log("Called")
+        console.log(id);
+        console.log(c_id);
 
-        // const senderInfo = [];
+        // const PageAccessToken = await axios.get(`${process.env.GRAPH_API_URL}/${id}?fields=access_token&access_token=${process.env.LONG_LIVE_ACCESS_TOKEN}`);
 
-       const messages = await axios.get(`${process.env.ALL_POST_INFO}/${id}/conversations?fields=messages{from,message,created_time,id,to}&access_token=${process.env.PAGE_ACCESS_TOKEN}`)
+        // const data = await axios.get(`${process.env.GRAPH_API_URL}/${c_id}/messages?fields=message,from,to,created_time&access_token=${PageAccessToken.data.access_token}`);
 
-       console.log(messages.data.data.length)
-
-       console.log("Called")
-    //    for(let i= 0;i<messages.data.data.length;i++)
-    //    { 
-            console.log(messages.data.data[0].messages.data.length);
-    //    }
-
-
-    //    res.send(messages.data)
-
-
+        // console.log(data);
 
     },
     async postMessage(req,res){
@@ -65,9 +55,7 @@ module.exports = {
             console.log(id);
             console.log(ps_id);
 
-            const messageposted = await axios.post(`${process.env.ALL_POST_INFO}/${id}/messages?recipient={'id':${ps_id}}&messaging_type=RESPONSE&message={'text':${message}}&access_token=${process.env.PAGE_ACCESS_TOKEN}`)
-
-
+            const messageposted = await axios.post(`${process.env.GRAPH_API_URL}/${id}/messages?recipient={'id':${ps_id}}&messaging_type=RESPONSE&message={'text':${message}}&access_token=${process.env.PAGE_ACCESS_TOKEN}`)
 
             console.log(messageposted.data)
 
@@ -76,5 +64,6 @@ module.exports = {
         }
      
        
-    }
+    },
+
 }

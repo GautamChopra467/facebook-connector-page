@@ -18,7 +18,8 @@ module.exports = {
         MESSAGES:{
             MESSAGE:"/message/:id",
             POSTMESSAGE:"/message/:id/:ps_id",
-            SENDER:"/sender"
+            SENDER:"/sender",
+            CONVERSATIONS:"/conversations/:id/:c_id"
         }
     }
 }
