@@ -14,19 +14,23 @@ import { MdGif } from "react-icons/md";
 import { IoSend } from "react-icons/io5";
 import ParentComment from '../../../../shared/widgets/jsx/ParentComment';
 import axios from 'axios';
+import {useParams} from "react-router-dom" 
 
 const Posts = ({SinglePageInfo,callSinglePageInfo}) => {
   const [commentMsg, setCommentMsg] = useState("");
 
+  const {id} = useParams();
+
+  console.log(id)
+
   const changeCommentMsg = (e) => {
-    // console.log(e.target.value)
     setCommentMsg(e.target.value);
   }
 
-  const submitCommentMsg = (id) => {
-    axios.post(`${process.env.REACT_APP_BACKEND_PORT}comment/${id}`,{commentMsg}).then(({data})=>{
+  const submitCommentMsg = (pc_id) => {
+    setCommentMsg("");
+    axios.post(`${process.env.REACT_APP_BACKEND_PORT}comment/${id}/${pc_id}`,{commentMsg}).then(({data})=>{
       if(data){
-        setCommentMsg("");
         console.log("Calling ...")
         callSinglePageInfo();
         console.log("Calling After...")
@@ -148,7 +152,7 @@ const Posts = ({SinglePageInfo,callSinglePageInfo}) => {
 
                         {(post.comments === undefined) ? "" 
                         : (post.comments.data.map((comment)=>(
-                          <ParentComment comment={comment} />
+                          <ParentComment comment={comment} callSinglePageInfo={callSinglePageInfo}/>
                         )))}
                         
                       </div>

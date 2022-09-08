@@ -6,8 +6,9 @@ module.exports = {
             INFO:"/allpostinfo",
             PAGE:"/pageinfo",
             SINGLEPAGE:"/singlepageinfo/:id",
-            COMMENT:"/comment/:id",
-            DELETECOMMENT:"/deletecomment/:id"
+            COMMENT:"/comment/:id/:pc_id",
+            DELETECOMMENT:"/deletecomment/:id/:pc_id",
+            PROFILE:"/pageprofile/:id"
         },
         USER:{
             SIGNUP:"/signup",
@@ -16,7 +17,8 @@ module.exports = {
         },
         MESSAGES:{
             MESSAGE:"/message/:id",
-            POSTMESSAGE:"/message/:id/:ps_id"
+            POSTMESSAGE:"/message/:id/:ps_id",
+            SENDER:"/sender"
         }
     }
 }

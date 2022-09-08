@@ -3,7 +3,9 @@ import "../styles/PageBannerStyles.css";
 import { BsSearch, BsMessenger, BsThreeDots } from "react-icons/bs";
 import { IoMdThumbsUp } from "react-icons/io";
 
-const PageBanner = () => {
+const PageBanner = ({profileInfo}) => {
+
+ 
   return (
     <div>
       <div className='main_container_pagebanner'>
@@ -14,19 +16,19 @@ const PageBanner = () => {
 
             <div className='page_detail_lower_section_pagebanner'>
                 <div className='page_detail_lower_left_section_pagebanner'>
-                    <img src="https://scontent.fdel13-1.fna.fbcdn.net/v/t39.30808-6/304918862_101029426086642_2575468552583535769_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=rS2A4w9XJcYAX8VA7fW&_nc_oc=AQnzZGR8qgm7t8WsJMh1FUugwW98LjRI6WpZb_7atjhGhnqZbx28vFn0v7-jD1n2ko-uRQXmeQvUs8Ftk_l4qQxQ&tn=9BQnbXKFS3ElhVB-&_nc_ht=scontent.fdel13-1.fna&oh=00_AT_rEwW0sdyFwiJRvRDB8tLmX2l7yXpFxSIkFQkoNxge3w&oe=631970C1" alt="profile" />
+                {profileInfo && <img src={profileInfo.url} alt="profile" />}
                 </div>
 
                 <div className='page_detail_lower_right_section_pagebanner'>
                     <div className='page_info_section_pagebanner'>
                         <div className='page_info_top_section_pagebanner'>
-                            <h3>Demo Page</h3>
+                            <h3>{profileInfo.name}</h3>
                         </div>
 
                         <div className='page_info_top_section_pagebanner'>
                             <p>2 likes</p>
                             <div className='dot_pagebanner'></div>
-                            <p>2 followers</p>
+                            <p>{profileInfo.followers} followers</p>
                         </div>
                     </div>
 

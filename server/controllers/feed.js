@@ -2,19 +2,18 @@ const axios = require("axios")
 
 module.exports = {
 
-   
+    async pageProfile(req,res){
 
-    // async comments(req, res) {
-    //     try {
-    //         const allComments = await axios.get(`${process.env.ALL_COMMENTS}?access_token=${process.env.PAGE_ACCESS_TOKEN}`)
+        const {id} = req.params;
+      
+       const PageAccessToken = await axios.get(`https://graph.facebook.com/v14.0/${id}?fields=access_token&access_token=${process.env.LONG_LIVE_ACCESS_TOKEN}`);
 
-    //         res.send(allComments.data)
+      
+       const data = await axios.get(`https://graph.facebook.com/v14.0/me?fields=picture%2Cname%2Cfollowers_count&access_token=${PageAccessToken.data.access_token}`);
 
-    //     } catch (err) {
-    //         console.log(err)
-    //     }
+       res.send(data.data);
 
-    // },
+    },
     async allPagesInfo(req, res) {
         try {
 
@@ -24,7 +23,8 @@ module.exports = {
 
             for(let i=0;i<allPagesInfo.data.data.length;i++){
                 try{
-                    const allPostInfo = await axios.get(`${process.env.ALL_POST_INFO}/${allPagesInfo.data.data[i].id}?fields=name,unread_notif_count,unread_message_count,category,picture&access_token=${process.env.PAGE_ACCESS_TOKEN}`)
+
+                    const allPostInfo = await axios.get(`${process.env.ALL_POST_INFO}/${allPagesInfo.data.data[i].id}?fields=name,unread_notif_count,unread_message_count,category,picture&access_token=${allPagesInfo.data.data[i].access_token}`)
 
                     allpagesInfo = [...allpagesInfo,allPostInfo.data];
 
@@ -44,7 +44,9 @@ module.exports = {
     async allPostInfo(req, res) {
         try {
 
-            const allPostInfo = await axios.get(`${process.env.ALL_POST_INFO}?fields=full_picture,message,comments,likes,shares&access_token=${process.env.PAGE_ACCESS_TOKEN}`)
+            const PageAccessToken = await axios.get(`https://graph.facebook.com/v14.0/${id}?fields=access_token&access_token=${process.env.LONG_LIVE_ACCESS_TOKEN}`);
+
+            const allPostInfo = await axios.get(`${process.env.ALL_POST_INFO}?fields=full_picture,message,comments,likes,shares&access_token=${PageAccessToken.data.access_token}`)
 
             res.send(allPostInfo.data)
 
@@ -58,8 +60,10 @@ module.exports = {
 
             const {id} = req.params;
 
+            const PageAccessToken = await axios.get(`${process.env.ALL_POST_INFO}/${id}?fields=access_token&access_token=${process.env.LONG_LIVE_ACCESS_TOKEN}`);
+
             const singlepageinfo = await axios.get(`${process.env.ALL_POST_INFO}/${id}/feed?fields=full_picture,created_time,message,comments{created_time,from,message}
-            &access_token=${process.env.PAGE_ACCESS_TOKEN}`)
+            &access_token=${PageAccessToken.data.access_token}`)
 
            res.send(singlepageinfo.data.data)
 
@@ -70,12 +74,13 @@ module.exports = {
     async postComment(req,res){
         try{
 
-            const {id} = req.params;
+            const {id,pc_id} = req.params;
 
-          
-            const {commentMsg} = req.body; 
+            const {commentMsg} = req.body;
+            
+            const PageAccessToken = await axios.get(`${process.env.ALL_POST_INFO}/${id}?fields=access_token&access_token=${process.env.LONG_LIVE_ACCESS_TOKEN}`);
 
-            const singlepageinfo = await axios.post(`${process.env.ALL_POST_INFO}/${id}/comments/?access_token=${process.env.PAGE_ACCESS_TOKEN}&message=${commentMsg}`)
+            const singlepageinfo = await axios.post(`${process.env.ALL_POST_INFO}/${pc_id}/comments/?access_token=${PageAccessToken.data.access_token}&message=${commentMsg}`)
 
             console.log(singlepageinfo.data)
 
@@ -87,12 +92,15 @@ module.exports = {
     },
     async deleteComment(req, res){
          
-        const {id} = req.params;
-
         try{
-            await axios.delete(`${process.env.ALL_POST_INFO}/${id}?access_token=${process.env.PAGE_ACCESS_TOKEN}`)
+        
+            const {id,pc_id} = req.params;
+
+            const PageAccessToken = await axios.get(`${process.env.ALL_POST_INFO}/${id}?fields=access_token&access_token=${process.env.LONG_LIVE_ACCESS_TOKEN}`);
+        
+            await axios.delete(`${process.env.ALL_POST_INFO}/${pc_id}?access_token=${PageAccessToken.data.access_token}`);
             
-            res.send({message : "true"})
+            res.send({message : "true"});
         }catch(err){
             console.log(err)
         }

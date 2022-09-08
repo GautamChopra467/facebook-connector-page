@@ -12,28 +12,43 @@ const SinglePage = () => {
   
   const [SinglePageInfo,setSinglePageInfo] = useState([])
 
-  const {id} = useParams()
+  const {id} = useParams();
+
+  const [profileInfo,setProfileInfo] = useState({
+    name:"",
+    url:"",
+    followers:""
+  })
+
 
   const callSinglePageInfo = ()=>{
-    console.log("Called...")
+    
     axios.get(`${process.env.REACT_APP_BACKEND_PORT}singlepageinfo/${id}`).then(({data})=>{
       setSinglePageInfo(data)
-    console.log("Called Set ...")
-
     })
   }
 
+  const getProfileImage = ()=>{
+    axios.get(`${process.env.REACT_APP_BACKEND_PORT}pageprofile/${id}`)
+    .then(({data})=>{
+      console.log(data)
+      setProfileInfo({...profileInfo,name:data.name,url:data.picture.data.url,followers:data.followers_count})
+    })
+}
+
+ 
   useEffect(()=>{
-    callSinglePageInfo()
+    callSinglePageInfo();
+    getProfileImage();
   },[])
 
-  console.log(SinglePageInfo)
+  console.log(profileInfo)
 
   return (
     <div>
       <Navbar />
       <div className='main_container_singlepage'>
-        <PageBanner  />
+        <PageBanner profileInfo={profileInfo} />
         <div className='main_container_bottom_section_singlepage'>
           <div className='main_photos_container_singlepage'>
             <div className='main_photos_top_section_singlepage'>
