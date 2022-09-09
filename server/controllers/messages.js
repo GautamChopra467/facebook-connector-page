@@ -16,7 +16,7 @@ module.exports = {
             for(let j=0;j<data.data[i].participants.data.length;j++){
                 if(data.data[i].participants.data[j].id !== id){
                     try{
-                        const participant =  await axios.get(`${process.env.GRAPH_API_URL}/${data.data[i].participants.data[j].id}?access_token=${process.env.PAGE_ACCESS_TOKEN}`)
+                        const participant =  await axios.get(`${process.env.GRAPH_API_URL}/${data.data[i].participants.data[j].id}?access_token=${PageAccessToken.data.access_token}`)
                         participant.data["conversation_id"] = data.data[i].id;
                         participant.data["snippet"] = data.data[i].snippet;
                         participant.data["message"] = data.data[i].messages.data.reverse();

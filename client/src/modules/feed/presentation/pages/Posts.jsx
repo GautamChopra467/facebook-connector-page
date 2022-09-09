@@ -14,7 +14,7 @@ import ParentComment from '../../../../shared/widgets/jsx/ParentComment';
 import axios from 'axios';
 import {useParams} from "react-router-dom" 
 
-const Posts = ({SinglePageInfo,callSinglePageInfo}) => {
+const Posts = ({SinglePageInfo,callSinglePageInfo,profileInfo}) => {
   const [commentMsg, setCommentMsg] = useState("");
 
   const {id} = useParams();

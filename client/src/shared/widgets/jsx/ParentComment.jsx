@@ -24,7 +24,7 @@ const ParentComment = ({comment,callSinglePageInfo}) => {
     <div className="parent_comment_container_posts">
       <div className="parent_comment_box_posts">
         <div className="parent_comment_left_section_posts">
-          <img src={profileInfo.url} alt="person" />
+          {/* <img src={profileInfo.url} alt="person" /> */}
         </div>
 
         <div className="parent_comment_right_section_posts">
