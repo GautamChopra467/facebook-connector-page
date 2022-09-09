@@ -225,7 +225,7 @@ const Sidebar = ({allPagesInfo}) => {
           userid={id}
           userinfo={userinfo}
         /> */}
-        <Header />
+        <Header flag="noshow" />
         <PagesContainer allPagesInfo={allPagesInfo}/>
       </motion.main>
     </div>

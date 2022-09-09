@@ -3,9 +3,9 @@ import { Link, useNavigate} from "react-router-dom";
 import SignUpLogo from "../../../../assets/img/signup-image.png";
 import "../styles/RegisterStyles.css";
 import { BsArrowRightShort } from "react-icons/bs";
-import axios from "axios";
 import Header from "../../../../shared/widgets/jsx/Header";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { API_CLIENT } from "../../../../shared/services/api-client";
 
 const Register= ({theme, setTheme}) => {
   const navigate = useNavigate();
@@ -38,17 +38,19 @@ const Register= ({theme, setTheme}) => {
   }
 
   useEffect(() => {
-    if( Object.keys(formErrors).length === 0 && isSubmit ){
-      axios.post(`${process.env.REACT_APP_BACKEND_PORT}signup`, user)
-      .then( res => {
-        console.log(res.data.message);
-        if(res.data.message === "true"){
+
+    const fetchData = async () => {
+      if( Object.keys(formErrors).length === 0 && isSubmit ){
+        const result = await API_CLIENT.post(`${process.env.REACT_APP_BACKEND_PORT}signup`, user);
+        if(result.data.message === "true"){
           navigate("/login");
         }else {
-          setFormErrors({final: res.data.message});
+          setFormErrors({final: result.data.message});
         }
-      });
+      } 
     }
+    fetchData()
+
   }, [formErrors]);
 
   const validate = (values) => {
@@ -98,7 +100,7 @@ const Register= ({theme, setTheme}) => {
 
   return (
     <div>
-      <Header theme={theme} setTheme={setTheme} />
+      <Header flag="show" />
 
       <div className="main_signup">
         <div className="left-part_signup">
