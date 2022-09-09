@@ -50,11 +50,11 @@ const Posts = ({SinglePageInfo,callSinglePageInfo}) => {
                   <div className='post_upper_section_posts'>
                     <div className='post_upper_left_section_posts'>
                       <div className='post_upper_left_logo_section_posts'>
-                        <img src={ProfileImage} alt="profile-pic" />
+                        <img src={profileInfo.url} alt="profile-pic" />
                       </div>
                       <div className='post_upper_left_detail_section_posts'>
                         <div className='post_upper_left_top_section_posts'>
-                          <h4>Amazon India</h4>
+                          <h4>{profileInfo.name}</h4>
                         </div>
                         <div className='post_upper_left_bottom_section_posts'>
                           <p>{post.created_time}</p>
@@ -121,7 +121,7 @@ const Posts = ({SinglePageInfo,callSinglePageInfo}) => {
                         {/* INPUT COMMENT */}
                         <div className='write_comment_container_posts'>
                           <div className='write_comment_left_section_posts'>
-                            <img src={ProfileImage} alt='person' />
+                            <img src={profileInfo.url} alt='person' />
                           </div>
 
                           <div className='write_comment_right_section_posts'>
@@ -152,7 +152,7 @@ const Posts = ({SinglePageInfo,callSinglePageInfo}) => {
 
                         {(post.comments === undefined) ? "" 
                         : (post.comments.data.map((comment)=>(
-                          <ParentComment comment={comment} callSinglePageInfo={callSinglePageInfo}/>
+                          <ParentComment comment={comment} callSinglePageInfo={callSinglePageInfo} profileInfo={profileInfo}/>
                         )))}
                         
                       </div>

@@ -69,7 +69,7 @@ const SinglePage = () => {
           </div>
 
           {(SinglePageInfo === undefined) ? "" : (
-            <Posts SinglePageInfo={SinglePageInfo}  callSinglePageInfo={callSinglePageInfo}/>
+            <Posts SinglePageInfo={SinglePageInfo}  callSinglePageInfo={callSinglePageInfo} profileInfo={profileInfo}/>
           )}
         </div>
       </div>
