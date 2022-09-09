@@ -7,7 +7,7 @@ import "../styles/HeaderStyles.css";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { BsMoonFill, BsSunFill } from "react-icons/bs";
 
-const Header = () => {
+const Header = ({flag}) => {
   const navigate = useNavigate();
 
   const [click,setClick] = useState(false);
@@ -26,16 +26,18 @@ const Header = () => {
 
   return (
     <div className={shadow ? "header_header header_shadow_header" : "header_header"}>
-      <div className="left_section_header">
-        <img src={Logo} alt="facebook" />
-        <h3>Facebook</h3>
-      </div>
+      
+        <div className="left_section_header">
+        {flag === "show" && (
+          <>
+          <img src={Logo} alt="facebook" />
+          <h3>Facebook</h3>
+          </>
+        )}
+        </div>
+      
 
       <div className={click ? "right_section_header active_header" : "right_section_header"}>
-        <div className="abc">
-          {/* <Link to="/" className="intern2_header">Top Internships</Link> */}
-        </div>
-        {/* <Link to="/company">Are you a Company ?</Link> */}
         <div className="button_container_header">
           <button onClick={() => navigate("/login")} className="btn_light_header">Log in</button>
           <button onClick={() => navigate("/signup")} className="btn_primary_header">Sign Up</button>

@@ -15,8 +15,6 @@ const AccountPages = () => {
     }
     allPagesInfo()
   },[])
- 
-  console.log(allPagesInfo)
 
   return (
     <div>

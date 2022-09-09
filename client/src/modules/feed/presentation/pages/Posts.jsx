@@ -1,10 +1,8 @@
 import React,{useState,useEffect} from 'react';
 import "../styles/PostsStyles.css";
-import Post from '../components/Post';
 import { GoGlobe } from "react-icons/go";
 import { BsEmojiSmile, BsFillCaretDownFill, BsThreeDots } from "react-icons/bs";
 import ProfileImage from "../../../../assets/img/profile-image.png";
-import PostImage from "../../../../assets/img/post-image.jpg";
 import LikeImage from "../../../../assets/img/like-image.svg"
 import { RiShareForwardLine } from "react-icons/ri";
 import { BiLike } from "react-icons/bi";

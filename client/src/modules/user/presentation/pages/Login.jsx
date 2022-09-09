@@ -1,18 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import LoginLogo from "../../../../assets/img/login-image.png";
-// import GoogleLogo from "../../img/google-logo.svg";
 import "../styles/LoginStyles.css";
 import { BsArrowRightShort } from "react-icons/bs";
-import axios from "axios";
-// import {useCookies} from 'react-cookie';
 import Header from "../../../../shared/widgets/jsx/Header";
+import { API_CLIENT } from "../../../../shared/services/api-client";
 
 const Login = () => {
 
   const navigate = useNavigate();
-
-//   const [cookies,setCookie,removeCookie] = useCookies([])
 
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
@@ -28,7 +24,6 @@ const Login = () => {
       ...user,
       [name]: value
     })
-    console.log(name,value);
   }
 
   const submitForm = (e) => {
@@ -38,21 +33,19 @@ const Login = () => {
   }
 
   useEffect(() => {
-  
-    if( Object.keys(formErrors).length === 0 && isSubmit ){  
-      axios.post(`${process.env.REACT_APP_BACKEND_PORT}login`,
-      { 
-        ...user
-      })
-      .then(({data}) => {
-        if(data.message){
+
+    const fetchData = async () => {
+      if( Object.keys(formErrors).length === 0 && isSubmit ){ 
+        const result = await API_CLIENT.post(`${process.env.REACT_APP_BACKEND_PORT}login`, user);
+        if(result.data.message === "true"){
           navigate(`/pages`);
         }
         else {
-             setFormErrors({final: data.message})
+          setFormErrors({final: result.data.message})
         }
-      });
+      }
     }
+    fetchData()    
   }, [formErrors]);
 
   const validate = (values) => {
@@ -90,7 +83,7 @@ const Login = () => {
   return (
     <div>
       
-      <Header />
+      <Header flag="show" />
 
       <div className="main_login">
         <div className="left-part_login">
@@ -133,7 +126,7 @@ const Login = () => {
                 </div>
 
                 <div className="container6_login">
-                  <Link to='/emailverify/forgotpassword'>Forgot Password ?</Link>
+                  {/* <Link to='/emailverify/forgotpassword'>Forgot Password ?</Link> */}
                 </div>
                 </div>
 
