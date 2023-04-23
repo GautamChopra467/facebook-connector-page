@@ -24,13 +24,13 @@ const ParentComment = ({comment,callSinglePageInfo}) => {
     <div className="parent_comment_container_posts">
       <div className="parent_comment_box_posts">
         <div className="parent_comment_left_section_posts">
-          <img src={ProfileImage} alt="person" />
+          {/* <img src={profileInfo.url} alt="person" /> */}
         </div>
 
         <div className="parent_comment_right_section_posts">
           <div className="parent_comment_right_top_section_posts">
             <div className="parent_message_container_posts">
-              {comment.from && (
+              {comment.id === id && (
               <div className="parent_message_top_section_posts">
                 <GiMicrophone className="microphone_icon_posts" />
                 <p>Author</p>
@@ -39,7 +39,7 @@ const ParentComment = ({comment,callSinglePageInfo}) => {
               
 
               <div className="parent_message_bottom_section_posts">
-                <h3>Amazon India</h3>
+                <h3>{comment.from.name}</h3>
                 {/* <input type="text" value="We're still unable to understand your concern. Could you elaborate on your concern with more information so that we can assist you accordingly?" /> */}
                 <p>
                   {comment.message}

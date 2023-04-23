@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ::1 - - [23/Apr/2023:09:17:01 +0000] "OPTIONS /login HTTP/1.1" 204 0 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"
 ::1 - - [23/Apr/2023:09:17:02 +0000] "POST /login HTTP/1.1" 200 35 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"
 ::1 - - [23/Apr/2023:09:17:02 +0000] "POST /login HTTP/1.1" 200 35 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"
@@ -16,3 +17,5 @@
 ::1 - - [23/Apr/2023:09:17:45 +0000] "POST /login HTTP/1.1" 200 18 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"
 ::1 - - [23/Apr/2023:09:18:32 +0000] "GET /pageinfo HTTP/1.1" - - "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"
 ::1 - - [23/Apr/2023:09:18:32 +0000] "GET /pageinfo HTTP/1.1" - - "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"
+=======
+>>>>>>> 105de435271a752e08932d5fc9a15df5c34f5991
