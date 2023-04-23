@@ -1,25 +1,19 @@
 import React,{useEffect,useState} from "react";
 import "../styles/MessageStyles.css";
-import { AiFillMessage, AiFillSetting, AiOutlineSearch } from "react-icons/ai";
+import { AiFillMessage, AiFillSetting } from "react-icons/ai";
 import { BsBarChartFill, BsClock, BsCalendarDateFill, BsMegaphoneFill, BsFillQuestionCircleFill, BsSliders, BsThreeDots, BsTable, BsEmojiSmile } from "react-icons/bs";
 import { FaBars, FaBell, FaReact } from "react-icons/fa";
 import { TbBrandMeta, TbMessageDots } from "react-icons/tb";
 import { HiHome } from "react-icons/hi";
 import { IoDocuments, IoSearchOutline, IoSend } from "react-icons/io5";
 import { MdFeedback } from "react-icons/md";
-import { FcCheckmark } from "react-icons/fc";
-import ProfileImage from "../../../../assets/img/profile-image.png";
-import { FiCheck } from "react-icons/fi";
 import { BiCheck } from "react-icons/bi";
 import { IoMdThumbsUp } from "react-icons/io";
 import { ImAttachment } from "react-icons/im";
-
 import axios from "axios";
 import {useParams} from "react-router-dom";
 
-
 const Message = () => {
-
 
     const {id} = useParams();
     

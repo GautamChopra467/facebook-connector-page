@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Logo from "../../../assets/img/facebook-logo.png";
 // import Logo from "../../../img/logo.png";
 // import Logo2 from "../../../img/logo-white.png";  
 import "../styles/HeaderStyles.css";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { BsMoonFill, BsSunFill } from "react-icons/bs";
 
 const Header = ({flag}) => {
   const navigate = useNavigate();
